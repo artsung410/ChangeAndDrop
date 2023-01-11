@@ -27,10 +27,9 @@ public class GameManager : Singleton<GameManager>
         set => unlockCount = value;
     }
 
-
     private void Start()
     {
-        UnLockCount = 2;
+        UnLockCount = 4;
         CurrentScene = Scene.Title;
     }
 
@@ -38,6 +37,7 @@ public class GameManager : Singleton<GameManager>
     {
         CurrentLevel = level;
         CurrentScene = Scene.Game;
-        SceneManager.LoadScene((int)Scene.Game);
+        Debug.Log($"현재 레벨은 {CurrentLevel} 입니다.");
+        //SceneManager.LoadScene((int)Scene.Game);
     }
 }
