@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\rEscape!\n"
+  m_text: Project!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a53de79f39469fb4d81e6dcc7729e66f, type: 2}
   m_sharedMaterial: {fileID: -145319460350743957, guid: a53de79f39469fb4d81e6dcc7729e66f, type: 2}
@@ -654,9 +654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Algorithm Zone
-
-'
+  m_text: Change And Drop
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a53de79f39469fb4d81e6dcc7729e66f, type: 2}
   m_sharedMaterial: {fileID: -145319460350743957, guid: a53de79f39469fb4d81e6dcc7729e66f, type: 2}
