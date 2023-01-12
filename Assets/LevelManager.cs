@@ -28,10 +28,4 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene((int)Scene.Stage);
         GameManager.Instance.CurrentScene = Scene.Stage;
     }
-
-    public void Spawn()
-    {
-        GameObject newObj = GameObject.FindGameObjectWithTag("Start");
-        newObj.GetComponent<Field_Start>().SpawnCharacter();
-    }
 }

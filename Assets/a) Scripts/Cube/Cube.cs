@@ -23,24 +23,29 @@ public class Cube : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI TMPro_CopyCount;
 
+
     private void Awake()
     {
         TMPro_CopyCount.text = $"X{copyCount}";
     }
 
+    private int currentPassCount = 0;
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Ball"))
+        if (other.CompareTag("Ball"))
         {
-            copyBall(other.gameObject);
-        }
-    }
+            ++currentPassCount;
+            ++GameManager.Instance.CurrentBallCount;
 
-    private void copyBall(GameObject obj)
-    {
-        for (int i = 0; i < copyCount - 1; i++)
-        {
-            GameObject newObj = Instantiate(obj);
+            if (currentPassCount > copyCount)
+            {
+                return;
+            }
+
+            Ball myBall = other.GetComponent<Ball>();
+            myBall.setCubeInfo(copyCount);
+            myBall.ResizeCollider(false);
+            myBall.copyBall(other.gameObject);
         }
     }
 }

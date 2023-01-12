@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
     public Scene CurrentScene;
     public int CurrentLevel;
     private int unlockCount;
+    private int currentBallCount;
 
     public int UnLockCount
     {
@@ -27,9 +28,16 @@ public class GameManager : Singleton<GameManager>
         set => unlockCount = value;
     }
 
+    public int CurrentBallCount
+    {
+        get => currentBallCount;
+        set => currentBallCount = value;
+    }
+
     private void Start()
     {
         UnLockCount = 4;
+        CurrentBallCount = 5;
         CurrentScene = Scene.Title;
     }
 
