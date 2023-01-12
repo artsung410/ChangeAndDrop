@@ -49,4 +49,9 @@ public class Cube_Change : Cube
         onObstacles = !onObstacles;
         Obstacle.SetActive(onObstacles);
     }
+
+    private void OnDestroy()
+    {
+        ClickPanel.onSwitichingEvent -= ChangeObject;
+    }
 }
