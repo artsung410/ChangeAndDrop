@@ -14,13 +14,16 @@ public class Ball : MonoBehaviour
     public int currentCubeCopyCount;
 
     SphereCollider spherCollider;
+    MeshRenderer meshRenderer;
 
     private void Awake()
     {
+        Cube_Change.onCubeSwitichingEvent += ChangeColor;
+        meshRenderer = GetComponent<MeshRenderer>();
         spherCollider = GetComponent<SphereCollider>();
     }
 
-    public void copyBall(GameObject obj)
+    public void CopyBall(GameObject obj)
     {
         GameObject newBall = Instantiate(obj, obj.transform.position, Quaternion.identity);
         Ball ball = newBall.GetComponent<Ball>();
@@ -34,12 +37,18 @@ public class Ball : MonoBehaviour
             return;
         }
 
-        copyBall(newBall);
+        CopyBall(newBall);
     }
 
-    public void setCubeInfo(int cubeCopyCount)
+    public void SetCubeInfo(int cubeCopyCount, MeshRenderer meshRenderer)
     {
         currentCubeCopyCount = cubeCopyCount;
+        this.meshRenderer.material.color = meshRenderer.material.color;
+    }
+
+    public void ChangeColor(MeshRenderer meshRenderer)
+    {
+        this.meshRenderer.material.color = meshRenderer.material.color;
     }
 
     public void ResizeCollider(bool onBigger)

@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-    
-    // ###############################################
-    //             NAME : ARTSUNG                      
-    //             MAIL : artsung410@gmail.com         
-    // ###############################################
+
+
+// ###############################################
+//             NAME : ARTSUNG                      
+//             MAIL : artsung410@gmail.com         
+// ###############################################
 
 public enum CubeType
 {
     Normal,
     Change,
-    Swap,
+    Switiching,
+}
+
+public enum CubeColor
+{
+    Blue,
+    Orange
 }
 
 public class Cube : MonoBehaviour
@@ -21,15 +28,16 @@ public class Cube : MonoBehaviour
     public CubeType type;
 
     [SerializeField]
-    private TextMeshProUGUI TMPro_CopyCount;
+    protected TextMeshProUGUI TMPro_CopyCount;
+    protected int currentPassCount = 0;
+    protected MeshRenderer meshRenderer;
 
-
-    private void Awake()
+    protected virtual void Awake()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         TMPro_CopyCount.text = $"X{copyCount}";
     }
 
-    private int currentPassCount = 0;
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Ball"))
@@ -43,9 +51,10 @@ public class Cube : MonoBehaviour
             }
 
             Ball myBall = other.GetComponent<Ball>();
-            myBall.setCubeInfo(copyCount);
+            myBall.SetCubeInfo(copyCount, meshRenderer);
             myBall.ResizeCollider(false);
-            myBall.copyBall(other.gameObject);
+            myBall.CopyBall(other.gameObject);
         }
     }
+
 }
