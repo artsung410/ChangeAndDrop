@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 
 // ###############################################
 //             NAME : ARTSUNG                      
@@ -98,12 +98,11 @@ public class Ball : MonoBehaviour
     private void Smaller()
     {
         spherCollider.radius = 0.03f;
-        ++GameManager.Instance.TempSmallerCount;
-        Debug.Log(GameManager.Instance.TempSmallerCount);
     }
 
     private void OnDestroy()
     {
         ClickPanel.onSwitichingEvent -= ChangeColor;
+        --GameManager.Instance.CurrentBallCount;
     }
 }

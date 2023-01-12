@@ -37,6 +37,11 @@ public class Cube_Change : Cube
 
             Destroy(other.gameObject);
         }
+
+        else if (other.gameObject.layer == 8)
+        {
+
+        }
     }
 
     private void ChangeObject()

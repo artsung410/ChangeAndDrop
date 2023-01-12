@@ -49,7 +49,6 @@ public class Cube : MonoBehaviour
 
             if (currentPassCount > maxPassCount)
             {
-                Debug.Log("∏Æ≈œ¡ﬂ");
                 return;
             }
 
