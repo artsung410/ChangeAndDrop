@@ -16,12 +16,6 @@ public enum CubeType
     Switiching,
 }
 
-public enum CubeColor
-{
-    Blue,
-    Orange
-}
-
 public class Cube : MonoBehaviour
 {
     public int copyCount;
@@ -29,7 +23,6 @@ public class Cube : MonoBehaviour
 
     [SerializeField]
     protected TextMeshProUGUI TMPro_CopyCount;
-    protected int currentPassCount = 0;
     protected MeshRenderer meshRenderer;
 
     protected virtual void Awake()
@@ -38,21 +31,30 @@ public class Cube : MonoBehaviour
         TMPro_CopyCount.text = $"X{copyCount}";
     }
 
+    public int currentPassCount = 0;
+    public int maxPassCount = 0;
+    bool isAssign = false;
+    
     private void OnTriggerExit(Collider other)
     {
+        if (!isAssign)
+        {
+            maxPassCount = GameManager.Instance.CurrentBallCount;
+            isAssign = true;
+        }
+
         if (other.CompareTag("Ball"))
         {
             ++currentPassCount;
-            ++GameManager.Instance.CurrentBallCount;
 
-            if (currentPassCount > copyCount)
+            if (currentPassCount > maxPassCount)
             {
+                Debug.Log("∏Æ≈œ¡ﬂ");
                 return;
             }
 
             Ball myBall = other.GetComponent<Ball>();
-            myBall.SetCubeInfo(copyCount, meshRenderer);
-            myBall.ResizeCollider(false);
+            myBall.SetCubeInfo(copyCount);
             myBall.CopyBall(other.gameObject);
         }
     }

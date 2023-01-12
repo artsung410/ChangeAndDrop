@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     public int CurrentLevel;
     private int unlockCount;
     private int currentBallCount;
+    public int TempSmallerCount;
 
     public int UnLockCount
     {
@@ -38,6 +39,7 @@ public class GameManager : Singleton<GameManager>
     {
         UnLockCount = 4;
         CurrentBallCount = 5;
+        TempSmallerCount = 5;
         CurrentScene = Scene.Title;
     }
 
@@ -48,4 +50,5 @@ public class GameManager : Singleton<GameManager>
         Debug.Log($"현재 레벨은 {CurrentLevel} 입니다.");
         //SceneManager.LoadScene((int)Scene.Game);
     }
+
 }

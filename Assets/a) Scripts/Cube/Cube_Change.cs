@@ -10,37 +10,33 @@ using System;
 
 public class Cube_Change : Cube
 {
-    public static event Action<MeshRenderer> onCubeSwitichingEvent = delegate { };
 
     [SerializeField]
     private GameObject Obstacle;
-
     private bool onObstacles;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        ClickPanel.onSwitichingEvent += ChangeObject;
+    }
 
     private void Start()
     {
         onObstacles = Obstacle.activeSelf;
     }
 
-    private void OnMouseDown()
-    {
-        if (!onObstacles)
-        {
-            return;
-        }
-
-        ChangeObject();
-        onCubeSwitichingEvent.Invoke(meshRenderer);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (!onObstacles)
+        if (other.CompareTag("Ball"))
         {
-            return;
-        }
+            if (!onObstacles)
+            {
+                return;
+            }
 
-        Destroy(other.gameObject);
+            Destroy(other.gameObject);
+        }
     }
 
     private void ChangeObject()
