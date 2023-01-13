@@ -39,7 +39,7 @@ public class GameManager : Singleton<GameManager>
 
             if (currentBallCount <= 0)
             {
-                onGameOverEvent.Invoke();
+                activeGameOver();
             }
         }
 
@@ -61,4 +61,8 @@ public class GameManager : Singleton<GameManager>
         currentBallCount = 5;
     }
 
+    public void activeGameOver()
+    {
+        onGameOverEvent.Invoke();
+    }
 }

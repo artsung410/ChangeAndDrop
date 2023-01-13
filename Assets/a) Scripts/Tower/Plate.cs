@@ -21,21 +21,23 @@ public class Plate : MonoBehaviour
     private GameObject Particle_Destroy;
 
     Vector3 detectionRange;
-    float detectionHeight;
+    Vector3 prevSupportPos;
+    public float detectionHeight;
 
     public float MaxCount;
 
     private void Start()
     {
         TMpro_Info.text = MaxCount.ToString();
-        detectionHeight = (MaxCount * 3) / 13;
-        InvokeRepeating(nameof(DetactionBall), 1f, 0.5f);
+        detectionHeight = MaxCount * (3f / 13f);
+        prevSupportPos = Support.transform.position;
+        InvokeRepeating(nameof(detactionBall), 1f, 0.5f);
     }
 
     float elapsedTime = 0f;
     int currentBallCount = 0;
 
-    private void DetactionBall()
+    private void detactionBall()
     {
         if(currentBallCount >= MaxCount)
         {
@@ -44,18 +46,33 @@ public class Plate : MonoBehaviour
             return;
         }
 
-        CalculateSupportPos(currentBallCount);
-
-        Collider[] hitColliders = Physics.OverlapBox(transform.position, detectionRange, Quaternion.identity, 1 << 7);
-        currentBallCount = hitColliders.Length;
-        elapsedTime = 0f;
+        calculateSupportPos(currentBallCount);
+        measureVolume();
     }
 
-    private void CalculateSupportPos(int ballCount)
+    int prevBallCount = 0;
+    private void calculateSupportPos(int ballCount)
     {
-        Vector3 prevPos = Support.transform.position;
-        Vector3 newPos = new Vector3(prevPos.x, prevPos.y - (ballCount)/50f, prevPos.z);
+        prevBallCount = currentBallCount;
+
+        Vector3 newPos = new Vector3(prevSupportPos.x, prevSupportPos.y - (ballCount)/10f, prevSupportPos.z);
         Support.transform.position = newPos;
+    }
+
+    private void measureVolume()
+    {
+        Collider[] hitColliders = Physics.OverlapBox(transform.position, detectionRange, Quaternion.identity, 1 << 7);
+        currentBallCount = hitColliders.Length;
+
+        if (currentBallCount - prevBallCount == 0 && currentBallCount != 0 && prevBallCount != 0)
+        {
+            Invoke(nameof(delayGameOverEvent), 2f);
+        }
+    }
+
+    private void delayGameOverEvent()
+    {
+        GameManager.Instance.activeGameOver();
     }
 
     private void OnDrawGizmos()

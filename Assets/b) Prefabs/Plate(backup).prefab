@@ -1045,7 +1045,8 @@ MonoBehaviour:
   Support: {fileID: 8750298937850396153}
   TMpro_Info: {fileID: 614593753037399027}
   Particle_Destroy: {fileID: 436673124262427938, guid: 6fa84e410aa3c3543a15f197780c2c31, type: 3}
-  MaxCount: 20
+  detectionHeight: 0
+  MaxCount: 200
 --- !u!1 &8750298937309848571
 GameObject:
   m_ObjectHideFlags: 0
