@@ -386,7 +386,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 106
   m_CollisionDetection: 0
 --- !u!1 &8750298936545085407
 GameObject:
@@ -532,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8750298936939725454}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 0, z: -2.337}
+  m_LocalPosition: {x: -1.5, y: 0.024000159, z: -2.337}
   m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.10000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -645,7 +645,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 30
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -681,7 +681,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 10
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -834,7 +834,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 20
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -870,7 +870,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 20
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -992,7 +992,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 106
   m_CollisionDetection: 0
 --- !u!1 &8750298937287016263
 GameObject:
@@ -1042,9 +1042,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f285afd77d7f3b949b591b31ba343fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SupportCollider: {fileID: 8750298937850396153}
+  Support: {fileID: 8750298937850396153}
   TMpro_Info: {fileID: 614593753037399027}
-  detectionCount: 40
+  MaxCount: 40
 --- !u!1 &8750298937309848571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1188,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 25
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -1224,7 +1224,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 25
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -1264,7 +1264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8750298937330414398}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 0, z: 1.7959998}
+  m_LocalPosition: {x: -1.5010002, y: 0.000000014901161, z: 1.69}
   m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.10000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1377,7 +1377,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 1
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -1413,7 +1413,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 1
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -1566,7 +1566,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 20
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -1602,7 +1602,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 20
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -1881,7 +1881,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 106
   m_CollisionDetection: 0
 --- !u!1 &8750298937666482797
 GameObject:
@@ -2026,7 +2026,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 20
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -2062,7 +2062,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 20
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -2102,7 +2102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8750298937701451369}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.481, y: 0, z: 2.6629999}
+  m_LocalPosition: {x: 1.481, y: 0.008, z: 2.513}
   m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.10000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2215,7 +2215,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 3
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -2251,7 +2251,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 3
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -2291,7 +2291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8750298937703389631}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.481, y: 0, z: -2.337}
+  m_LocalPosition: {x: 1.481, y: 0.024, z: -2.337}
   m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.10000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2404,7 +2404,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 30
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -2440,7 +2440,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 10
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -2562,7 +2562,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 106
   m_CollisionDetection: 0
 --- !u!1 &8750298937850396153
 GameObject:
@@ -2577,7 +2577,7 @@ GameObject:
   - component: {fileID: 8750298937850396156}
   - component: {fileID: 8750298937850396159}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Support
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2659,7 +2659,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 0.69}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8750298937939789690
 GameObject:
@@ -2691,7 +2691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8750298937939789690}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 0, z: 2.6629999}
+  m_LocalPosition: {x: -1.5, y: 0.0080002695, z: 2.5129998}
   m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.10000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2804,7 +2804,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 3
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -2840,7 +2840,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 3
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -2962,7 +2962,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 106
   m_CollisionDetection: 0
 --- !u!1 &8750298937968332510
 GameObject:
@@ -3107,7 +3107,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 25
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -3143,7 +3143,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 25
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -3296,7 +3296,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 20
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -3332,7 +3332,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 20
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -3372,7 +3372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8750298938352790885}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.481, y: 0, z: 1.7959998}
+  m_LocalPosition: {x: 1.48, y: 0, z: 1.69}
   m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.10000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3485,7 +3485,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 1
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -3521,7 +3521,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: 0
-    max: 5
+    max: 1
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0

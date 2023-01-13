@@ -12,7 +12,7 @@ using TMPro;
 public class Plate : MonoBehaviour
 {
     [SerializeField]
-    private GameObject SupportCollider;
+    private GameObject Support;
 
     [SerializeField]
     private TextMeshProUGUI TMpro_Info;
@@ -20,13 +20,39 @@ public class Plate : MonoBehaviour
     Vector3 detectionRange;
     float detectionHeight;
 
-    public float detectionCount = 40;
+    public float MaxCount;
 
     private void Start()
     {
-        TMpro_Info.text = detectionCount.ToString();
-        detectionHeight = (detectionCount * 3) / 26;
+        TMpro_Info.text = MaxCount.ToString();
+        detectionHeight = (MaxCount * 3) / 13;
+        InvokeRepeating(nameof(DetactionBall), 1f, 0.5f);
+    }
 
+    float elapsedTime = 0f;
+    int currentBallCount = 0;
+
+    private void DetactionBall()
+    {
+        if(currentBallCount >= MaxCount)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        CalculateSupportHeighPos(currentBallCount);
+
+        Collider[] hitColliders = Physics.OverlapBox(transform.position, detectionRange, Quaternion.identity, 1 << 7);
+        currentBallCount = hitColliders.Length;
+        Debug.Log(currentBallCount);
+        elapsedTime = 0f;
+    }
+
+    private void CalculateSupportHeighPos(int ballCount)
+    {
+        Vector3 prevPos = Support.transform.position;
+        Vector3 newPos = new Vector3(prevPos.x, prevPos.y - (ballCount)/50f, prevPos.z);
+        Support.transform.position = newPos;
     }
 
     private void OnDrawGizmos()
