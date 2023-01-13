@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallPf: {fileID: 6628735509724534158, guid: c178d7b5c7025ff46b52f826ea068414, type: 3}
-  initActivationCount: 1000
+  initActivationCount: 1500
 --- !u!1 &624932985
 GameObject:
   m_ObjectHideFlags: 0

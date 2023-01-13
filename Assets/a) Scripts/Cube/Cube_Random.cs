@@ -49,7 +49,7 @@ public class Cube_Random : Cube
     {
         if (!isRandNumAssign && CheckLookAtMe())
         {
-            int randNum = Random.Range(2, 10);
+            int randNum = Random.Range(2, 5);
             copyCount = randNum;
             TMPro_CopyCount.text = $"X{copyCount}";
             isRandNumAssign = true;

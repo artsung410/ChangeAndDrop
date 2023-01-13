@@ -92,6 +92,7 @@ public class Ball : MonoBehaviour
     public void CopyColor(Color color)
     {
         meshRenderer.material.color = color;
+        trailrenderer.startColor = color;
     }
 
 

@@ -42,7 +42,6 @@ public class GameManager : Singleton<GameManager>
                 activeGameOver();
             }
         }
-
     }
 
     private void Start()
