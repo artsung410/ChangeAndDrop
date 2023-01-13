@@ -426,9 +426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f285afd77d7f3b949b591b31ba343fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SupportCollider: {fileID: 8750298937850396153}
+  Support: {fileID: 0}
   TMpro_Info: {fileID: 0}
-  detectionCount: 20
+  Particle_Destroy: {fileID: 0}
+  MaxCount: 100
 --- !u!1 &8750298937468833133
 GameObject:
   m_ObjectHideFlags: 0

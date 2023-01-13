@@ -26,9 +26,11 @@ public class Ball : MonoBehaviour
     private List<Material> materials;
 
     public BallColor ballColor;
+    public Rigidbody rb;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         ClickPanel.onSwitichingEvent += ChangeColor;
         meshRenderer = GetComponent<MeshRenderer>();
         spherCollider = GetComponent<SphereCollider>();
@@ -36,10 +38,6 @@ public class Ball : MonoBehaviour
 
     public void CopyBall(GameObject obj)
     {
-        GameObject newBall = Instantiate(obj, obj.transform.position, Quaternion.identity);
-        Ball ball = newBall.GetComponent<Ball>();
-
-
         ++currentCopyCount;
 
         if (currentCopyCount >= currentCubeCopyCount)
@@ -48,6 +46,8 @@ public class Ball : MonoBehaviour
             return;
         }
 
+        GameObject newBall = Instantiate(obj, obj.transform.position, Quaternion.identity);
+        Ball ball = newBall.GetComponent<Ball>();
         ball.ResizeCollider(false);
         ++GameManager.Instance.CurrentBallCount;
         CopyBall(newBall);
@@ -86,12 +86,7 @@ public class Ball : MonoBehaviour
 
     private IEnumerator Bigger()
     {
-        for (int i = 0; i < 100; i++)
-        {
-            yield return new WaitForSeconds(0.01f);
-            spherCollider.radius = spherCollider.radius + 0.5f / 100;
-        }
-
+        yield return new WaitForSeconds(0.05f);
         spherCollider.radius = 0.5f;
     }
 
@@ -103,6 +98,5 @@ public class Ball : MonoBehaviour
     private void OnDestroy()
     {
         ClickPanel.onSwitichingEvent -= ChangeColor;
-        --GameManager.Instance.CurrentBallCount;
     }
 }

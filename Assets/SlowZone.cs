@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+
     
     // ###############################################
     //             NAME : ARTSUNG                      
     //             MAIL : artsung410@gmail.com         
     // ###############################################
 
-public class EndCollider : MonoBehaviour
+public class SlowZone : MonoBehaviour
 {
-    public static event Action onCameraStopEvent;
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 8)
+        if(other.CompareTag("Ball"))
         {
-            onCameraStopEvent.Invoke();
-            Debug.Log("카메라 종료");
+            Debug.Log("ball 닿음");
+            Rigidbody rb = other.GetComponent<Ball>().rb;
+            rb.velocity = Vector3.zero;
         }
     }
 }

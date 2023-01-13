@@ -35,6 +35,7 @@ public class Cube_Random : Cube
             }
 
             Destroy(other.gameObject);
+            --GameManager.Instance.CurrentBallCount;
         }
     }
 
@@ -51,5 +52,10 @@ public class Cube_Random : Cube
 
         onObstacles = !onObstacles;
         Obstacle.SetActive(onObstacles);
+    }
+
+    private void OnDestroy()
+    {
+        ClickPanel.onSwitichingEvent -= ChangeObject;
     }
 }

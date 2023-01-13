@@ -36,6 +36,7 @@ public class Cube_Change : Cube
             }
 
             Destroy(other.gameObject);
+            --GameManager.Instance.CurrentBallCount;
         }
     }
 

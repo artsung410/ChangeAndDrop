@@ -48,7 +48,6 @@ public class Plate : MonoBehaviour
 
         Collider[] hitColliders = Physics.OverlapBox(transform.position, detectionRange, Quaternion.identity, 1 << 7);
         currentBallCount = hitColliders.Length;
-        Debug.Log(currentBallCount);
         elapsedTime = 0f;
     }
 

@@ -38,7 +38,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         UnLockCount = 4;
-        CurrentBallCount = 5;
+        currentBallCount = 5;
         CurrentScene = Scene.Title;
     }
 
@@ -48,7 +48,7 @@ public class GameManager : Singleton<GameManager>
         CurrentScene = Scene.Game;
         Debug.Log($"현재 레벨은 {CurrentLevel} 입니다.");
         SceneManager.LoadScene((int)Scene.Game);
-        CurrentBallCount = 5;
+        currentBallCount = 5;
     }
 
 }
