@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System;
     
     // ###############################################
     //             NAME : ARTSUNG                      
@@ -17,11 +17,11 @@ public enum Scene
 }
 public class GameManager : Singleton<GameManager>
 {
+    public event Action onGameOverEvent = delegate { };
     public Scene CurrentScene;
     public int CurrentLevel;
     private int unlockCount;
     private int currentBallCount;
-
 
     public int UnLockCount
     {
@@ -32,7 +32,17 @@ public class GameManager : Singleton<GameManager>
     public int CurrentBallCount
     {
         get => currentBallCount;
-        set => currentBallCount = value;
+
+        set
+        {
+            currentBallCount = value;
+
+            if (currentBallCount <= 0)
+            {
+                onGameOverEvent.Invoke();
+            }
+        }
+
     }
 
     private void Start()

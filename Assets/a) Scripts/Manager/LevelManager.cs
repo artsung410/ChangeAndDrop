@@ -16,11 +16,16 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private GameObject GameClearPanel;
 
+    [SerializeField]
+    private GameObject GameFailedPanel;
+
     private int FinalStage = 2;
 
     private void Awake()
     {
-        EndTrigger.onGameClearEvent += ActivationGameClearPanel;
+        EndTrigger.onGameClearEvent += ActivationInfoPanel;
+        GameManager.Instance.onGameOverEvent += ActivationGameFailedPanel;
+
         Init();
     }
 
@@ -46,18 +51,34 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.StageLoad(GameManager.Instance.CurrentLevel + 1);
     }
 
-    public void ActivationGameClearPanel()
+    public void LoadeScene_RetryStage()
+    {
+        GameManager.Instance.StageLoad(GameManager.Instance.CurrentLevel);
+    }
+
+    public void ActivationInfoPanel()
     {
         GameClearPanel.SetActive(true);
     }
 
-    public void DeActivationGameClearPanel()
+    public void DeActivationInfoPanel()
     {
         GameClearPanel.SetActive(false);
     }
 
+    public void ActivationGameFailedPanel()
+    {
+        GameFailedPanel.SetActive(true);
+    }
+
+    public void DeActivationGameFailedPanel()
+    {
+        GameFailedPanel.SetActive(false);
+    }
+
     private void OnDestroy()
     {
-        EndTrigger.onGameClearEvent -= ActivationGameClearPanel;
+        EndTrigger.onGameClearEvent -= ActivationInfoPanel;
+        GameManager.Instance.onGameOverEvent -= ActivationGameFailedPanel;
     }
 }
