@@ -33,6 +33,6 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        transform.position = new Vector3(transform.position.x, Distance + MasterBallTransform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, Distance + MasterBallTransform.position.y + 5f, transform.position.z);
     }
 }
