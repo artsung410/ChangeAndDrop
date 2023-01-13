@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private GameObject GameFailedPanel;
 
-    private int FinalStage = 2;
+    private int FinalStage = 4;
 
     private void Awake()
     {

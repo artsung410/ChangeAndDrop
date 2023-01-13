@@ -29,7 +29,7 @@ public class Plate : MonoBehaviour
     private void Start()
     {
         TMpro_Info.text = MaxCount.ToString();
-        detectionHeight = MaxCount * (3f / 13f);
+        detectionHeight = MaxCount * (2f / 13f);
         prevSupportPos = Support.transform.position;
         InvokeRepeating(nameof(detactionBall), 1f, 0.5f);
     }
@@ -66,7 +66,7 @@ public class Plate : MonoBehaviour
 
         if (currentBallCount - prevBallCount == 0 && currentBallCount != 0 && prevBallCount != 0)
         {
-            Invoke(nameof(delayGameOverEvent), 2f);
+            Invoke(nameof(delayGameOverEvent), detectionHeight / 15f);
         }
     }
 

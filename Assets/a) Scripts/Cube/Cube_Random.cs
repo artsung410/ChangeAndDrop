@@ -14,14 +14,17 @@ public class Cube_Random : Cube
     private GameObject Obstacle;
     private bool onObstacles;
 
+
     protected override void Awake()
     {
         TMPro_CopyCount.text = $"???";
         ClickPanel.onSwitichingEvent += ChangeObject;
     }
 
+    Camera selectedCamera;
     private void Start()
     {
+        selectedCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         onObstacles = Obstacle.activeSelf;
     }
 
@@ -42,7 +45,7 @@ public class Cube_Random : Cube
     bool isRandNumAssign;
     protected override void ChangeObject()
     {
-        if (!isRandNumAssign)
+        if (!isRandNumAssign && CheckLookAtMe())
         {
             int randNum = Random.Range(2, 10);
             copyCount = randNum;
@@ -57,5 +60,15 @@ public class Cube_Random : Cube
     private void OnDestroy()
     {
         ClickPanel.onSwitichingEvent -= ChangeObject;
+    }
+
+    public bool CheckLookAtMe()//카메라 뷰 안에 적이 있는지 없는지
+    {
+        Vector3 interpolatePos = new Vector3(transform.position.x, transform.position.y - 15f, transform.position.z);
+        Vector3 viewPos = selectedCamera.WorldToViewportPoint(interpolatePos);
+        bool OnLookAt = viewPos.x > 0 && viewPos.x < 1 && viewPos.y > 0 && viewPos.y < 1;
+
+        Debug.Log(OnLookAt);
+        return OnLookAt;
     }
 }

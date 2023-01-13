@@ -822,8 +822,8 @@ MonoBehaviour:
   Level:
   - {fileID: 561805540966438565, guid: 45777c5e77947b749806e01ebcd207bf, type: 3}
   - {fileID: 561805540966438565, guid: ae765b5fc05affc4290b9b789e6be2bc, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 561805540966438565, guid: 5dc0cad2444b42545af6b377f3ddc9f3, type: 3}
+  - {fileID: 561805540966438565, guid: ba1c2efb1fff2cd448bf54e44f9d354d, type: 3}
   GameClearPanel: {fileID: 268194762}
   GameFailedPanel: {fileID: 374912031}
 --- !u!1 &770274690
