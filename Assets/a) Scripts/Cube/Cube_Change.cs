@@ -35,7 +35,9 @@ public class Cube_Change : Cube
                 return;
             }
 
-            Destroy(other.gameObject);
+            Ball ball = other.GetComponent<Ball>();
+            ball.init();
+            BallPool.ReturnObject(ball);
             --GameManager.Instance.CurrentBallCount;
         }
     }

@@ -36,12 +36,19 @@ public class Ball : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         spherCollider = GetComponent<SphereCollider>();
 
+        init();
+
         // 꼬리효과 설정
         trailrenderer = GetComponent<TrailRenderer>();
         trailrenderer.startColor = meshRenderer.material.color;
 
         // 마우스 클릭시 이벤트
         ClickPanel.onSwitichingEvent += ChangeColor;
+    }
+
+    public void init()
+    {
+        rb.velocity = Vector3.zero;
     }
 
     public void CopyBall(GameObject obj)
@@ -54,11 +61,11 @@ public class Ball : MonoBehaviour
             return;
         }
 
-        GameObject newBall = Instantiate(obj, obj.transform.position, Quaternion.identity);
-        Ball ball = newBall.GetComponent<Ball>();
+        Ball ball = BallPool.GetObject(obj.transform.position);
+        ball.CopyColor(meshRenderer.material.color);
         ball.ResizeCollider(false);
         ++GameManager.Instance.CurrentBallCount;
-        CopyBall(newBall);
+        CopyBall(ball.gameObject);
     }
 
     public void SetCubeInfo(int cubeCopyCount)
@@ -81,6 +88,12 @@ public class Ball : MonoBehaviour
             ballColor = BallColor.Blue;
         }
     }
+
+    public void CopyColor(Color color)
+    {
+        meshRenderer.material.color = color;
+    }
+
 
     public void ResizeCollider(bool onBigger)
     {
