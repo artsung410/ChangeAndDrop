@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+
     
     // ###############################################
     //             NAME : ARTSUNG                      
     //             MAIL : artsung410@gmail.com         
     // ###############################################
 
-public class Cube_Change : Cube
+public class Cube_Random : Cube
 {
-
     [SerializeField]
     private GameObject Obstacle;
     private bool onObstacles;
 
     protected override void Awake()
     {
-        base.Awake();
+        TMPro_CopyCount.text = $"???";
         ClickPanel.onSwitichingEvent += ChangeObject;
     }
 
@@ -39,14 +38,18 @@ public class Cube_Change : Cube
         }
     }
 
+    bool isRandNumAssign;
     protected override void ChangeObject()
     {
+        if (!isRandNumAssign)
+        {
+            int randNum = Random.Range(2, 10);
+            copyCount = randNum;
+            TMPro_CopyCount.text = $"X{copyCount}";
+            isRandNumAssign = true;
+        }
+
         onObstacles = !onObstacles;
         Obstacle.SetActive(onObstacles);
-    }
-
-    private void OnDestroy()
-    {
-        ClickPanel.onSwitichingEvent -= ChangeObject;
     }
 }

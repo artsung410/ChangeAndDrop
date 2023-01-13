@@ -17,6 +17,9 @@ public class Plate : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI TMpro_Info;
 
+    [SerializeField]
+    private GameObject Particle_Destroy;
+
     Vector3 detectionRange;
     float detectionHeight;
 
@@ -37,10 +40,11 @@ public class Plate : MonoBehaviour
         if(currentBallCount >= MaxCount)
         {
             Destroy(gameObject);
+            Instantiate(Particle_Destroy, transform.position, Quaternion.identity);
             return;
         }
 
-        CalculateSupportHeighPos(currentBallCount);
+        CalculateSupportPos(currentBallCount);
 
         Collider[] hitColliders = Physics.OverlapBox(transform.position, detectionRange, Quaternion.identity, 1 << 7);
         currentBallCount = hitColliders.Length;
@@ -48,7 +52,7 @@ public class Plate : MonoBehaviour
         elapsedTime = 0f;
     }
 
-    private void CalculateSupportHeighPos(int ballCount)
+    private void CalculateSupportPos(int ballCount)
     {
         Vector3 prevPos = Support.transform.position;
         Vector3 newPos = new Vector3(prevPos.x, prevPos.y - (ballCount)/50f, prevPos.z);

@@ -58,4 +58,9 @@ public class Cube : MonoBehaviour
         }
     }
 
+    protected virtual void ChangeObject()
+    {
+        Debug.Log("오브젝트 변화");
+    }
+
 }
