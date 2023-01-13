@@ -85,4 +85,9 @@ public class Plate : MonoBehaviour
                 detectionRange
             );
     }
+
+    private void OnDestroy()
+    {
+        CancelInvoke(nameof(detactionBall));
+    }
 }
