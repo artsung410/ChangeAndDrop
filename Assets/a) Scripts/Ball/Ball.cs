@@ -25,15 +25,23 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private List<Material> materials;
 
+    private TrailRenderer trailrenderer;
+
     public BallColor ballColor;
     public Rigidbody rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        ClickPanel.onSwitichingEvent += ChangeColor;
         meshRenderer = GetComponent<MeshRenderer>();
         spherCollider = GetComponent<SphereCollider>();
+
+        // 꼬리효과 설정
+        trailrenderer = GetComponent<TrailRenderer>();
+        trailrenderer.startColor = meshRenderer.material.color;
+
+        // 마우스 클릭시 이벤트
+        ClickPanel.onSwitichingEvent += ChangeColor;
     }
 
     public void CopyBall(GameObject obj)
@@ -63,11 +71,13 @@ public class Ball : MonoBehaviour
         if (ballColor == BallColor.Blue)
         {
             meshRenderer.material = materials[(int)BallColor.Orange];
+            trailrenderer.startColor = meshRenderer.material.color;
             ballColor = BallColor.Orange;
         }
         else
         {
             meshRenderer.material = materials[(int)BallColor.Blue];
+            trailrenderer.startColor = meshRenderer.material.color;
             ballColor = BallColor.Blue;
         }
     }
