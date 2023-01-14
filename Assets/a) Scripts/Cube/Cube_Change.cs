@@ -18,6 +18,10 @@ public class Cube_Change : Cube
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void OnEnable()
+    {
         ClickPanel.onSwitichingEvent += ChangeObject;
     }
 
@@ -49,7 +53,7 @@ public class Cube_Change : Cube
         Obstacle.SetActive(onObstacles);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         ClickPanel.onSwitichingEvent -= ChangeObject;
     }

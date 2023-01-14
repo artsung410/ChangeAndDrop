@@ -3136,7 +3136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a6d8e389ea3564fb1c02d73e85710a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  copyCount: 10
+  copyCount: 5
   type: 1
   TMPro_CopyCount: {fileID: 4132134288035976352}
   currentPassCount: 0
@@ -12078,6 +12078,10 @@ PrefabInstance:
     - target: {fileID: 8750298937287016260, guid: 781fb94c1e4518940b4b232cabb1afb9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750298937287016261, guid: 781fb94c1e4518940b4b232cabb1afb9, type: 3}
+      propertyPath: MaxCount
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8750298937287016263, guid: 781fb94c1e4518940b4b232cabb1afb9, type: 3}
       propertyPath: m_Name

@@ -22,50 +22,27 @@ public class Cup : MonoBehaviour
     [SerializeField]
     private GameObject MasterBall;
 
+    private Coroutine Coroutine_DelayDropball;
+    private Coroutine Coroutine_RotateCup;
+
+    [SerializeField] 
+    private float DelayDropTime;
+
+    [SerializeField]
+    private float RotateCycleTime;
+
+    private WaitForSeconds CoCycle_Drop;
+    private WaitForSeconds CoCycle_Rotate;
+
     private void OnEnable()
     {
         ClickPanel.onDropEvent += InitBall;
     }
 
-    private bool isMoveAble = true;
-
-    private void InitBall()
+    private void Start()
     {
-        isMoveAble = false;
-        StartCoroutine(RotateCup());
-    }
-
-    Ball myBall;
-    private IEnumerator DelayDopBall()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        for (int i = 0; i < InitBallCount; i++)
-        {
-            Vector3 newPos = new Vector3(SpawnPoint.position.x + i * 0.5f, SpawnPoint.position.y, SpawnPoint.position.z);
-            myBall = BallPool.GetObject(newPos);
-            myBall.SetRadius(0.1f);
-        }
-
-        GameObject mBall = Instantiate(MasterBall, SpawnPoint.position, Quaternion.identity);
-        onCreateMasterBallEvent.Invoke(mBall.transform);
-    }
-
-
-    private IEnumerator RotateCup()
-    {
-        for (int i = 0; i < 30; i++)
-        {
-            yield return new WaitForSeconds(0.01f);
-            transform.Rotate(-180f / 30, 0f, 0f);
-        }
-
-        StartCoroutine(DelayDopBall());
-    }
-
-    private void OnDisable()
-    {
-        ClickPanel.onDropEvent -= InitBall;
+        CoCycle_Drop = new WaitForSeconds(DelayDropTime);
+        CoCycle_Rotate = new WaitForSeconds(RotateCycleTime);
     }
 
     private void FixedUpdate()
@@ -83,5 +60,47 @@ public class Cup : MonoBehaviour
 
             transform.position = new Vector3(-5 + point.x / 2, transform.position.y, transform.position.z);
         }
+
     }
+    private bool isMoveAble = true;
+
+    private void InitBall()
+    {
+        isMoveAble = false;
+        Coroutine_RotateCup = StartCoroutine(RotateCup());
+    }
+
+    private Ball myBall;
+
+    private IEnumerator RotateCup()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            yield return CoCycle_Rotate;
+            transform.Rotate(-180f / 30, 0f, 0f);
+        }
+
+        Coroutine_DelayDropball = StartCoroutine(DelayDopBall());
+    }
+
+    private IEnumerator DelayDopBall()
+    {
+        yield return CoCycle_Drop;
+
+        for (int i = 0; i < InitBallCount; i++)
+        {
+            Vector3 newPos = new Vector3(SpawnPoint.position.x + i * 0.5f, SpawnPoint.position.y, SpawnPoint.position.z);
+            myBall = BallPool.GetObject(newPos);
+            myBall.SetRadius(0.1f);
+        }
+
+        GameObject mBall = Instantiate(MasterBall, SpawnPoint.position, Quaternion.identity);
+        onCreateMasterBallEvent.Invoke(mBall.transform);
+    }
+
+    private void OnDisable()
+    {
+        ClickPanel.onDropEvent -= InitBall;
+    }
+
 }

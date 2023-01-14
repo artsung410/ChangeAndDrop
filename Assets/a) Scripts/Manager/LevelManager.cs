@@ -31,12 +31,11 @@ public class LevelManager : MonoBehaviour
 
     private int FinalStage = 4;
 
-    private void Awake()
+    private void OnEnable()
     {
+        Init();
         EndTrigger.onGameClearEvent += ActivationInfoPanel;
         GameManager.Instance.onGameOverEvent += ActivationGameFailedPanel;
-
-        Init();
     }
 
     public void Init()
@@ -110,7 +109,7 @@ public class LevelManager : MonoBehaviour
         GameFailedPanel.SetActive(false);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         EndTrigger.onGameClearEvent -= ActivationInfoPanel;
         GameManager.Instance.onGameOverEvent -= ActivationGameFailedPanel;

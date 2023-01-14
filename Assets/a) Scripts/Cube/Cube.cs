@@ -18,6 +18,7 @@ public enum CubeType
 
 public class Cube : MonoBehaviour
 {
+    // Debug 용도
     public int copyCount;
     public CubeType type;
 
@@ -31,9 +32,11 @@ public class Cube : MonoBehaviour
         TMPro_CopyCount.text = $"X{copyCount}";
     }
 
+    // Debug 용도
     public int currentPassCount = 0;
     public int maxPassCount = 0;
-    bool isAssign = false;
+
+    private bool isAssign = false;
     
     private void OnTriggerExit(Collider other)
     {

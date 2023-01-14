@@ -35,6 +35,4 @@ public class TitleManager : MonoBehaviour
     {
         Application.Quit();
     }
-
-
 }

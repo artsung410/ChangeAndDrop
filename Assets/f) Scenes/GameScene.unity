@@ -3898,4 +3898,5 @@ MonoBehaviour:
   InitBallCount: 5
   SpawnPoint: {fileID: 1761218805}
   MasterBall: {fileID: 1825955066050181048, guid: 9fe4947a72a24374680ec5497114d391, type: 3}
-  isMoveAble2: 0
+  DelayDropTime: 0.5
+  RotateCycleTime: 0.01
