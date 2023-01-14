@@ -10,21 +10,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform MasterBallTransform;
+    private Transform MasterTransform;
     float Distance;
     bool IsStop;
 
-    private void Awake()
+    private void OnEnable()
     {
         EndCollider.onCameraStopEvent += () => { IsStop = true; };
+        Cup.onCreateMasterBallEvent += setMasterBall;
     }
 
-    private void Start()
-    {
-        Vector3 InterpolationPos = new Vector3(transform.position.x, MasterBallTransform.position.y, transform.position.z);
-        Distance = Vector3.Distance(transform.position, InterpolationPos);
-    }
+    bool onDetaction = false;
 
     private void LateUpdate()
     {
@@ -33,7 +29,25 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        Vector3 newPos = new Vector3(transform.position.x, Distance + MasterBallTransform.position.y + 15f, transform.position.z);
+        if (!onDetaction)
+        {
+            return;
+        }
+
+        Vector3 newPos = new Vector3(transform.position.x, Distance + MasterTransform.position.y + 15f, transform.position.z);
         transform.position = Vector3.Slerp(transform.position, newPos, Time.deltaTime * 3f);
+    }
+
+    private void setMasterBall(Transform transform)
+    {
+        MasterTransform = transform;
+        Vector3 InterpolationPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Distance = Vector3.Distance(transform.position, InterpolationPos);
+        onDetaction = true;
+    }
+
+    private void OnDisable()
+    {
+        Cup.onCreateMasterBallEvent -= setMasterBall;
     }
 }

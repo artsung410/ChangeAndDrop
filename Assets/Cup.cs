@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
     
     // ###############################################
@@ -10,11 +11,16 @@ using UnityEngine;
 
 public class Cup : MonoBehaviour
 {
+    public static event Action<Transform> onCreateMasterBallEvent = delegate { };
+
     [SerializeField]
     private int InitBallCount;
 
     [SerializeField]
     private Transform SpawnPoint;
+
+    [SerializeField]
+    private GameObject MasterBall;
 
     private void OnEnable()
     {
@@ -37,6 +43,9 @@ public class Cup : MonoBehaviour
             myBall = BallPool.GetObject(newPos);
             myBall.SetRadius(0.1f);
         }
+
+        GameObject mBall = Instantiate(MasterBall, SpawnPoint.position, Quaternion.identity);
+        onCreateMasterBallEvent.Invoke(mBall.transform);
     }
 
 
