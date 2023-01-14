@@ -19,13 +19,13 @@ public class Ball : MonoBehaviour
     int currentCopyCount;
     int currentCubeCopyCount;
 
-    SphereCollider spherCollider;
+    SphereCollider sphereCollider;
     MeshRenderer meshRenderer;
 
     [SerializeField]
     private List<Material> materials;
 
-    private TrailRenderer trailrenderer;
+    private TrailRenderer trailRenderer;
 
     public BallColor ballColor;
     public Rigidbody rb;
@@ -34,19 +34,19 @@ public class Ball : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
-        spherCollider = GetComponent<SphereCollider>();
+        sphereCollider = GetComponent<SphereCollider>();
 
-        init();
+        Init();
 
         // 꼬리효과 설정
-        trailrenderer = GetComponent<TrailRenderer>();
-        trailrenderer.startColor = meshRenderer.material.color;
+        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer.startColor = meshRenderer.material.color;
 
         // 마우스 클릭시 이벤트
         ClickPanel.onSwitichingEvent += ChangeColor;
     }
 
-    public void init()
+    public void Init()
     {
         rb.velocity = Vector3.zero;
     }
@@ -64,6 +64,7 @@ public class Ball : MonoBehaviour
         Ball ball = BallPool.GetObject(obj.transform.position);
         ball.CopyColor(meshRenderer.material.color);
         ball.ResizeCollider(false);
+        ball.rb.velocity = rb.velocity;
         ++GameManager.Instance.CurrentBallCount;
         CopyBall(ball.gameObject);
     }
@@ -78,13 +79,13 @@ public class Ball : MonoBehaviour
         if (ballColor == BallColor.Blue)
         {
             meshRenderer.material = materials[(int)BallColor.Orange];
-            trailrenderer.startColor = meshRenderer.material.color;
+            trailRenderer.startColor = meshRenderer.material.color;
             ballColor = BallColor.Orange;
         }
         else
         {
             meshRenderer.material = materials[(int)BallColor.Blue];
-            trailrenderer.startColor = meshRenderer.material.color;
+            trailRenderer.startColor = meshRenderer.material.color;
             ballColor = BallColor.Blue;
         }
     }
@@ -92,7 +93,7 @@ public class Ball : MonoBehaviour
     public void CopyColor(Color color)
     {
         meshRenderer.material.color = color;
-        trailrenderer.startColor = color;
+        trailRenderer.startColor = color;
     }
 
 
@@ -111,12 +112,12 @@ public class Ball : MonoBehaviour
     private IEnumerator Bigger()
     {
         yield return new WaitForSeconds(0.05f);
-        spherCollider.radius = 0.5f;
+        sphereCollider.radius = 0.5f;
     }
 
     private void Smaller()
     {
-        spherCollider.radius = 0.03f;
+        sphereCollider.radius = 0.03f;
     }
 
     private void OnDestroy()

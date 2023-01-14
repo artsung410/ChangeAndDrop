@@ -38,7 +38,7 @@ public class Cube_Random : Cube
             }
 
             Ball ball = other.GetComponent<Ball>();
-            ball.init();
+            ball.Init();
             BallPool.ReturnObject(ball);
             --GameManager.Instance.CurrentBallCount;
         }
