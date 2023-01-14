@@ -32,16 +32,21 @@ public class LevelButton : MonoBehaviour, IPointerDownHandler
 
     public void Init(int level)
     {
-        this.level = level;
-        Tmp_Level.text = level.ToString();
+        this.level = level + 1;
+        Tmp_Level.text = this.level.ToString();
         InitRank();
     }
 
     public void SetRank(int count)
     {
+        if (count == 0)
+        {
+            return;
+        }
+
         for (int i = 0; i < count; i++)
         {
-            Sprite_Stars[i] = Sprite_Stars[(int)Star.Full];
+            Image_Rank[i].sprite = Sprite_Stars[(int)Star.Full];
         }
     }
 

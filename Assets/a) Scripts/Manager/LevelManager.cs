@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using TMPro;
     
     // ###############################################
     //             NAME : ARTSUNG                      
@@ -18,6 +19,15 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     private GameObject GameFailedPanel;
+
+    [SerializeField]
+    private List<Image> Stars;
+
+    [SerializeField]
+    private Sprite StarSprites;
+
+    [SerializeField]
+    private TextMeshProUGUI Score;
 
     private int FinalStage = 4;
 
@@ -56,8 +66,32 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.StageLoad(GameManager.Instance.CurrentLevel);
     }
 
+    int starCount = 0;
     public void ActivationInfoPanel()
     {
+        float ratio = (float)GameManager.Instance.DeletedBallCount / GameManager.Instance.CurrentBallCount;
+        Debug.Log(ratio);
+
+        if(ratio < 0.05f)
+        {
+            starCount = 3;
+        }
+        else if (ratio < 0.07f && ratio > 0.05f)
+        {
+            starCount = 2;
+        }
+        else
+        {
+            starCount = 1;
+        }
+
+        for (int i = 0; i < starCount; i++)
+        {
+            Stars[i].sprite = StarSprites;
+        }
+
+        Score.text = GameManager.Instance.CurrentBallCount.ToString();
+        GameManager.Instance.SetStars(starCount);
         GameClearPanel.SetActive(true);
     }
 

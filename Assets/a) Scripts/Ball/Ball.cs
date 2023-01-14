@@ -16,8 +16,8 @@ public enum BallColor
 
 public class Ball : MonoBehaviour
 {
-    int currentCopyCount;
-    int currentCubeCopyCount;
+    private int currentCopyCount;
+    private int currentCubeCopyCount;
 
     SphereCollider sphereCollider;
     MeshRenderer meshRenderer;
@@ -63,7 +63,7 @@ public class Ball : MonoBehaviour
 
         Ball ball = BallPool.GetObject(obj.transform.position);
         ball.CopyColor(meshRenderer.material.color);
-        ball.ResizeCollider(false);
+        ball.ResizeCollider();
         ball.rb.velocity = rb.velocity;
         ++GameManager.Instance.CurrentBallCount;
         CopyBall(ball.gameObject);
@@ -90,35 +90,30 @@ public class Ball : MonoBehaviour
         }
     }
 
+    public void SetRadius(float radius)
+    {
+        sphereCollider.radius = radius;
+    }
+
     public void CopyColor(Color color)
     {
         meshRenderer.material.color = color;
         trailRenderer.startColor = color;
     }
 
-
-    public void ResizeCollider(bool onBigger)
+    public void ResizeCollider()
     {
-        if (onBigger)
-        {
-            StartCoroutine(Bigger());
-        }
-        else
-        {
-            Smaller();
-        }
+        sphereCollider.radius = 0.1f;
+        StartCoroutine(DelayBigger());
     }
 
-    private IEnumerator Bigger()
+    private IEnumerator DelayBigger()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
         sphereCollider.radius = 0.5f;
     }
 
-    private void Smaller()
-    {
-        sphereCollider.radius = 0.03f;
-    }
+
 
     private void OnDestroy()
     {

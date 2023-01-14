@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour
         Vector3 InterpolationPos = new Vector3(transform.position.x, MasterBallTransform.position.y, transform.position.z);
         Distance = Vector3.Distance(transform.position, InterpolationPos);
     }
+
     private void LateUpdate()
     {
         if (IsStop)

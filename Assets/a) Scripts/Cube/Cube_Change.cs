@@ -39,6 +39,7 @@ public class Cube_Change : Cube
             ball.Init();
             BallPool.ReturnObject(ball);
             --GameManager.Instance.CurrentBallCount;
+            ++GameManager.Instance.DeletedBallCount;
         }
     }
 

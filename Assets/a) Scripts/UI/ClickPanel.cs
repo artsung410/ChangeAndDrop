@@ -10,12 +10,42 @@ using UnityEngine.EventSystems;
 //             MAIL : artsung410@gmail.com         
 // ###############################################
 
-public class ClickPanel : MonoBehaviour, IPointerDownHandler
+public class ClickPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public static event Action onSwitichingEvent = delegate { };
+    public static event Action onGameStartEvent = delegate { };
+    public static event Action onDropEvent = delegate { };
+    private bool isAbleSwitich = false;
+    private bool isOnDrop;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        onSwitichingEvent.Invoke();
+        if (!isOnDrop)
+        {
+            onGameStartEvent.Invoke();
+        }
+
+        if (isAbleSwitich)
+        {
+            onSwitichingEvent.Invoke();
+        }
     }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if(!isOnDrop)
+        {
+            onDropEvent.Invoke();
+            isAbleSwitich = true;
+            isOnDrop = true;
+        }
+    }
+
+    //private void Update()
+    //{
+    //    Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+    //            Input.mousePosition.y, -Camera.main.transform.position.z));
+
+    //    Debug.Log(point);
+    //}
 }

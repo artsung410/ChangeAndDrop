@@ -39,7 +39,8 @@ public class StageManager : MonoBehaviour
                 GameObject newObj = Instantiate(LevelButton, Panel_Level.transform);
                 LevelButton levelButton = newObj.GetComponent<LevelButton>();
 
-                levelButton.Init(i + 1);
+                levelButton.Init(i);
+                levelButton.SetRank(GameManager.Instance.GetStarsCount(i));
             }
             else
             {

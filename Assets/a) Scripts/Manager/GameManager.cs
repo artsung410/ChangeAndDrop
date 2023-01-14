@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
-    
-    // ###############################################
-    //             NAME : ARTSUNG                      
-    //             MAIL : artsung410@gmail.com         
-    // ###############################################
+
+// ###############################################
+//             NAME : ARTSUNG                      
+//             MAIL : artsung410@gmail.com         
+// ###############################################
+
 
 public enum Scene
 {
@@ -15,6 +16,7 @@ public enum Scene
     Stage,
     Game,
 }
+
 public class GameManager : Singleton<GameManager>
 {
     public event Action onGameOverEvent = delegate { };
@@ -22,6 +24,9 @@ public class GameManager : Singleton<GameManager>
     public int CurrentLevel;
     private int unlockCount;
     private int currentBallCount;
+    private int deletedBallCount;
+
+    private int[] StarsCount = { 0, 0, 0, 0 };
 
     public int UnLockCount
     {
@@ -44,6 +49,12 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public int DeletedBallCount
+    {
+        get => deletedBallCount;
+        set => deletedBallCount = value;
+    }
+
     private void Start()
     {
         UnLockCount = 4;
@@ -58,6 +69,17 @@ public class GameManager : Singleton<GameManager>
         Debug.Log($"현재 레벨은 {CurrentLevel} 입니다.");
         SceneManager.LoadScene((int)Scene.Game);
         currentBallCount = 5;
+        deletedBallCount = 0;
+    }
+
+    public void SetStars(int Count)
+    {
+        StarsCount[CurrentLevel - 1] = Count;
+    }
+
+    public int GetStarsCount(int level)
+    {
+        return StarsCount[level];
     }
 
     public void activeGameOver()
