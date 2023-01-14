@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 561805540376285635}
   - component: {fileID: 561805540376285692}
   - component: {fileID: 561805540376285632}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 561805541672567583}
   - component: {fileID: 561805541672567576}
   - component: {fileID: 561805541672567580}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1745,7 +1745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a6d8e389ea3564fb1c02d73e85710a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  copyCount: 20
+  copyCount: 10
   type: 1
   TMPro_CopyCount: {fileID: 4132134288035976352}
   currentPassCount: 0
@@ -10010,7 +10010,7 @@ MonoBehaviour:
   TMpro_Info: {fileID: 2006875783472534221}
   Particle_Destroy: {fileID: 436673124262427938, guid: 6fa84e410aa3c3543a15f197780c2c31, type: 3}
   detectionHeight: 0
-  MaxCount: 800
+  MaxCount: 500
 --- !u!1 &7652158525297586852
 GameObject:
   m_ObjectHideFlags: 0

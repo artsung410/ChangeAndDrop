@@ -27,8 +27,11 @@ public class Cup : MonoBehaviour
         ClickPanel.onDropEvent += InitBall;
     }
 
+    private bool isMoveAble = true;
+
     private void InitBall()
     {
+        isMoveAble = false;
         StartCoroutine(RotateCup());
     }
 
@@ -63,5 +66,22 @@ public class Cup : MonoBehaviour
     private void OnDisable()
     {
         ClickPanel.onDropEvent -= InitBall;
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (!isMoveAble)
+            {
+                return;
+            }
+
+            Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+            Input.mousePosition.y, -Camera.main.transform.position.z));
+            Debug.Log(point.x);
+
+            transform.position = new Vector3(-5 + point.x / 2, transform.position.y, transform.position.z);
+        }
     }
 }
