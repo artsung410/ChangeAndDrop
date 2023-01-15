@@ -115,8 +115,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 52e32de360c1c0c488d364740824c2d2, type: 2}
   - {fileID: 2100000, guid: a99b502e31c083d48bb7a4b79beb507d, type: 2}
-  ballColor: 0
-  rb: {fileID: 0}
+  DelayBiggerTime: 0.1
 --- !u!54 &6628735509724534151
 Rigidbody:
   m_ObjectHideFlags: 0

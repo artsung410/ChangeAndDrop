@@ -27,8 +27,15 @@ public class Ball : MonoBehaviour
 
     private TrailRenderer trailRenderer;
 
-    public BallColor ballColor;
-    public Rigidbody rb;
+    private BallColor ballColor;
+    private Rigidbody rb;
+
+    private Coroutine Coroutine_DelayBigger;
+
+    [SerializeField]
+    private float DelayBiggerTime;
+
+    private WaitForSeconds CoCycle_Bigger;
 
     private void Awake()
     {
@@ -44,6 +51,11 @@ public class Ball : MonoBehaviour
 
         // 마우스 클릭시 이벤트
         ClickPanel.onSwitichingEvent += ChangeColor;
+    }
+
+    private void Start()
+    {
+        CoCycle_Bigger = new WaitForSeconds(DelayBiggerTime);
     }
 
     public void Init()
@@ -104,15 +116,21 @@ public class Ball : MonoBehaviour
     public void ResizeCollider()
     {
         sphereCollider.radius = 0.1f;
-        StartCoroutine(DelayBigger());
+        Coroutine_DelayBigger = StartCoroutine(DelayBigger());
     }
 
+
+    private int intervalCout = 10;
     private IEnumerator DelayBigger()
     {
-        yield return new WaitForSeconds(0.5f);
-        sphereCollider.radius = 0.5f;
+        Debug.Log("코루틴정상작동");
+        
+        for(int i = 0; i < intervalCout; i++)
+        {
+            yield return CoCycle_Bigger;
+            sphereCollider.radius = 0.05f * i;
+        }
     }
-
 
 
     private void OnDestroy()
