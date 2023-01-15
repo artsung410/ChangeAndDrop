@@ -19,7 +19,7 @@ public enum Scene
 
 public class GameManager : Singleton<GameManager>
 {
-    public event Action onGameOverEvent = delegate { };
+    public Action onGameOverEvent;
     public Scene CurrentScene;
     public int CurrentLevel;
     private int unlockCount;
@@ -83,6 +83,11 @@ public class GameManager : Singleton<GameManager>
 
     public void activeGameOver()
     {
-        onGameOverEvent.Invoke();
+        onGameOverEvent?.Invoke();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Time.timeScale = 0;
     }
 }

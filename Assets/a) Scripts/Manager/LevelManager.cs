@@ -111,6 +111,12 @@ public class LevelManager : MonoBehaviour
     private void OnDisable()
     {
         EndTrigger.onGameClearEvent -= ActivationInfoPanel;
+
+        if (GameManager.Instance == null)
+        {
+            return;
+        }
+
         GameManager.Instance.onGameOverEvent -= ActivationGameFailedPanel;
     }
 }

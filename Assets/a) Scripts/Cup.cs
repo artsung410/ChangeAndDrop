@@ -11,7 +11,7 @@ using System;
 
 public class Cup : MonoBehaviour
 {
-    public static event Action<Transform> onCreateMasterBallEvent = delegate { };
+    public static Action<Transform> onCreateMasterBallEvent;
 
     [SerializeField]
     private int InitBallCount;
@@ -94,7 +94,7 @@ public class Cup : MonoBehaviour
         }
 
         GameObject mBall = Instantiate(MasterBall, SpawnPoint.position, Quaternion.identity);
-        onCreateMasterBallEvent.Invoke(mBall.transform);
+        onCreateMasterBallEvent?.Invoke(mBall.transform);
     }
 
     private void OnDisable()

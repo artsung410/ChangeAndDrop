@@ -15,7 +15,7 @@ public class EndTrigger : MonoBehaviour
     bool isReadyToCheck = false;
     bool isGameWin = false;
 
-    public static event Action onGameClearEvent = delegate { };
+    public static Action onGameClearEvent;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,7 +43,7 @@ public class EndTrigger : MonoBehaviour
         if (elapsedTime >= 2f)
         {
             isGameWin = true;
-            onGameClearEvent.Invoke();
+            onGameClearEvent?.Invoke();
         }
     }
 }

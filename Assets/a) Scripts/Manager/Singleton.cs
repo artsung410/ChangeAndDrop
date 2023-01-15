@@ -20,7 +20,7 @@ public class Singleton<T> : MonoBehaviour where T: Component
             {
                 _instance = FindObjectOfType<T>();
 
-                if(_instance == null)
+                if(_instance == null && Time.timeScale != 0)
                 {
                     GameObject obj = new GameObject();
                     obj.name = typeof(T).Name;

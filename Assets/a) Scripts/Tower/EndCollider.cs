@@ -10,13 +10,13 @@ using System;
 
 public class EndCollider : MonoBehaviour
 {
-    public static event Action onCameraStopEvent;
+    public static Action onCameraStopEvent;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 8)
         {
-            onCameraStopEvent.Invoke();
+            onCameraStopEvent();
         }
     }
 }

@@ -71,6 +71,11 @@ public class Plate : MonoBehaviour
 
     private void delayGameOverEvent()
     {
+        if (GameManager.Instance == null)
+        {
+            return;
+        }
+
         GameManager.Instance.activeGameOver();
     }
 

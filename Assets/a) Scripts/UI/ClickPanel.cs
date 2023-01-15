@@ -12,9 +12,9 @@ using UnityEngine.EventSystems;
 
 public class ClickPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public static event Action onSwitichingEvent = delegate { };
-    public static event Action onGameStartEvent = delegate { };
-    public static event Action onDropEvent = delegate { };
+    public static Action onSwitichingEvent;
+    public static Action onGameStartEvent;
+    public static Action onDropEvent;
     private bool isAbleSwitich = false;
     private bool isOnDrop;
     
@@ -23,12 +23,12 @@ public class ClickPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (!isOnDrop)
         {
-            onGameStartEvent.Invoke();
+            onGameStartEvent?.Invoke();
         }
 
         if (isAbleSwitich)
         {
-            onSwitichingEvent.Invoke();
+            onSwitichingEvent?.Invoke();
         }
     }
 
@@ -36,7 +36,7 @@ public class ClickPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if(!isOnDrop)
         {
-            onDropEvent.Invoke();
+            onDropEvent?.Invoke();
             isAbleSwitich = true;
             isOnDrop = true;
         }
