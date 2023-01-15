@@ -54,10 +54,16 @@ public class Cup : MonoBehaviour
                 return;
             }
 
+            if (isLockOn)
+            {
+                return;
+            }
+
             Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
             Input.mousePosition.y, -Camera.main.transform.position.z));
 
-            transform.position = new Vector3(-5 + point.x / 2, transform.position.y, transform.position.z);
+            float newPosX = -5f + point.x / 2;
+            transform.position = new Vector3(newPosX, transform.position.y, transform.position.z);
         }
 
     }
@@ -95,6 +101,27 @@ public class Cup : MonoBehaviour
 
         GameObject mBall = Instantiate(MasterBall, SpawnPoint.position, Quaternion.identity);
         onCreateMasterBallEvent?.Invoke(mBall.transform);
+    }
+
+    private bool isLockOn;
+
+    public bool IsOLockOn
+    {
+        get => isLockOn;
+        set => isLockOn = value;
+    }
+
+    public void CalculateDistance(float targetX, float radius)
+    {
+        isLockOn = true;
+        if (targetX < 0)
+        {
+            transform.position = new Vector3(targetX + radius + 2.3f, transform.position.y, transform.position.z);
+        }    
+        else
+        {
+            transform.position = new Vector3(targetX - radius - 2.3f, transform.position.y, transform.position.z);
+        }
     }
 
     private void OnDisable()
