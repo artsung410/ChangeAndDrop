@@ -66,7 +66,6 @@ public class GameManager : Singleton<GameManager>
     {
         CurrentLevel = level;
         CurrentScene = Scene.Game;
-        Debug.Log($"현재 레벨은 {CurrentLevel} 입니다.");
         SceneManager.LoadScene((int)Scene.Game);
         currentBallCount = 5;
         deletedBallCount = 0;

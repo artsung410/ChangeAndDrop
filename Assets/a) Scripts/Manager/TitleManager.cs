@@ -18,7 +18,6 @@ public class TitleManager : MonoBehaviour
     {
         SceneManager.LoadScene((int)Scene.Stage);
         GameManager.Instance.CurrentScene = Scene.Stage;
-        Debug.Log("stage씬으로 전환");
     }
 
     public void ActivationTool()

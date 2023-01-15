@@ -69,7 +69,6 @@ public class LevelManager : MonoBehaviour
     public void ActivationInfoPanel()
     {
         float ratio = (float)GameManager.Instance.DeletedBallCount / GameManager.Instance.CurrentBallCount;
-        Debug.Log(ratio);
 
         if(ratio < 0.05f)
         {

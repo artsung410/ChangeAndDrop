@@ -64,8 +64,6 @@ public class Cube_Random : Cube
         Vector3 interpolatePos = new Vector3(transform.position.x, transform.position.y - 15f, transform.position.z);
         Vector3 viewPos = selectedCamera.WorldToViewportPoint(interpolatePos);
         bool OnLookAt = viewPos.x > 0 && viewPos.x < 1 && viewPos.y > 0 && viewPos.y < 1;
-
-        Debug.Log(OnLookAt);
         return OnLookAt;
     }
 

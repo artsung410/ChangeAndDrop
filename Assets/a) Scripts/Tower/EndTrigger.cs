@@ -42,7 +42,6 @@ public class EndTrigger : MonoBehaviour
 
         if (elapsedTime >= 2f)
         {
-            Debug.Log("°ÔÀÓ½Â¸®1!!");
             isGameWin = true;
             onGameClearEvent.Invoke();
         }

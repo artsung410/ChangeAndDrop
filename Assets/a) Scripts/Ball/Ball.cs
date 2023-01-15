@@ -123,8 +123,6 @@ public class Ball : MonoBehaviour
     private int intervalCout = 10;
     private IEnumerator DelayBigger()
     {
-        Debug.Log("코루틴정상작동");
-        
         for(int i = 0; i < intervalCout; i++)
         {
             yield return CoCycle_Bigger;

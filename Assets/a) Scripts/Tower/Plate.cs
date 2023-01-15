@@ -34,7 +34,6 @@ public class Plate : MonoBehaviour
         InvokeRepeating(nameof(detactionBall), 1f, 0.5f);
     }
 
-    float elapsedTime = 0f;
     int currentBallCount = 0;
 
     private void detactionBall()

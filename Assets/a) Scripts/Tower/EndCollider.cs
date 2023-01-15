@@ -17,7 +17,6 @@ public class EndCollider : MonoBehaviour
         if(other.gameObject.layer == 8)
         {
             onCameraStopEvent.Invoke();
-            Debug.Log("카메라 종료");
         }
     }
 }
